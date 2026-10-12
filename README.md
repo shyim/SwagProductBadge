@@ -2,7 +2,7 @@
 
 Custom product badges for Shopware 6 — create badges like *Vegan*, *Bestseller* or *Gift idea* in the Administration, assign several of them to any product, and let customers filter the listing by badge.
 
-Built live in the talk [**“Back to Basics — Creating Shopware Plugins from scratch”**](docs/Back-To-Basics.pdf) (Doraemon & Shizuka’s store). Part 1 of the talk used a single custom-field select; this plugin is Part 2: the badge outgrew the custom field and became its own entity.
+Built live in the talk [**“Back to Basics — Creating Shopware Plugins from scratch”**](docs/Back-To-Basics.pdf) (Doraemon & Shizuka’s store). Part 1 of the talk used a single custom-field select; this plugin is Part 2: the badge outgrew the custom field and became its own entity. Test your knowledge with the [companion quiz](docs/one-hour-talk-shopware-6-plugins-quiz.pdf).
 
 ## Why an own entity (and not a custom field)?
 
