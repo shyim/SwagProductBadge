@@ -1,0 +1,17 @@
+{% block sw_product_category_form_tags_field %}
+{% parent %}
+
+{% block sw_product_category_form_swag_product_badges_field %}
+<sw-entity-multi-select
+    v-if="showModeSetting && product?.extensions?.swagProductBadges"
+    class="sw-product-category-form__swag-product-badges-field"
+    :entity-collection="product.extensions.swagProductBadges"
+    :disabled="!allowEdit"
+    :label="$t('swag-product-badge.productForm.labelBadges')"
+    :placeholder="$t('swag-product-badge.productForm.placeholderBadges')"
+    :help-text="$t('swag-product-badge.productForm.helpTextBadges')"
+    @update:entity-collection="product.extensions.swagProductBadges = $event"
+/>
+
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/component/product/card/badges.html.twig' %}
+
+{% block component_product_badges_new %}
+    {{ parent() }}
+
+    {% block component_product_badges_swag_product_badge %}
+        {% for badge in product.extensions.swagProductBadges ?? [] %}
+            {% block component_swag_product_badge_list_item %}
+                <span class="badge badge-swag-product-badge"
+                      style="background-color: {{ badge.color }}">
+                {{ badge.translated.name }}
+            </span>
+            {% endblock %}
+        {% endfor %}
+    {% endblock %}
+{% endblock %}

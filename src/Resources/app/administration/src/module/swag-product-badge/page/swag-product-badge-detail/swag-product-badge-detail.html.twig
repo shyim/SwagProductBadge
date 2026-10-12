@@ -1,0 +1,92 @@
+{% block swag_product_badge_detail %}
+<sw-page class="swag-product-badge-detail">
+    {% block swag_product_badge_detail_smart_bar_header %}
+    <template #smart-bar-header>
+        <h2>{{ badge?.translated?.name || badge?.name || $t('swag-product-badge.detail.textHeadline') }}</h2>
+    </template>
+    {% endblock %}
+
+    {% block swag_product_badge_detail_smart_bar_actions %}
+    <template #smart-bar-actions>
+        <mt-button
+            variant="secondary"
+            @click="onCancel"
+        >
+            {{ $t('global.default.cancel') }}
+        </mt-button>
+
+        <sw-button-process
+            class="swag-product-badge-detail__save-action"
+            variant="primary"
+            :is-loading="isLoading"
+            :process-success="isSaveSuccessful"
+            @click="onSave"
+        >
+            {{ $t('global.default.save') }}
+        </sw-button-process>
+    </template>
+    {% endblock %}
+
+    {% block swag_product_badge_detail_language_switch %}
+    <template #language-switch>
+        <sw-language-switch
+            :disabled="isCreateMode"
+            :save-changes-function="saveOnLanguageChange"
+            :abort-change-function="abortOnLanguageChange"
+            @on-change="onChangeLanguage"
+        />
+    </template>
+    {% endblock %}
+
+    <template #content>
+        <sw-card-view>
+            {% block swag_product_badge_detail_language_info %}
+            <sw-language-info :entity-description="badge?.translated?.name || badge?.name" />
+            {% endblock %}
+
+            {% block swag_product_badge_detail_card %}
+            <mt-card
+                :title="$t('swag-product-badge.detail.cardTitle')"
+                :is-loading="isLoading"
+            >
+                <template v-if="badge">
+                    <mt-text-field
+                        v-model="badge.name"
+                        name="swag-product-badge-name"
+                        required
+                        :label="$t('swag-product-badge.detail.labelName')"
+                        :placeholder="placeholder(badge, 'name')"
+                    />
+
+                    <mt-colorpicker
+                        v-model="badge.color"
+                        name="swag-product-badge-color"
+                        required
+                        :alpha="false"
+                        :label="$t('swag-product-badge.detail.labelColor')"
+                    />
+
+                    <mt-number-field
+                        v-model="badge.position"
+                        name="swag-product-badge-position"
+                        number-type="int"
+                        :min="0"
+                        :label="$t('swag-product-badge.detail.labelPosition')"
+                    />
+
+                    {% block swag_product_badge_detail_preview %}
+                    <div class="swag-product-badge-detail__preview">
+                        <span
+                            :style="{ backgroundColor: badge.color, color: '#fff', padding: '4px 10px', borderRadius: '4px', fontWeight: 600 }"
+                        >
+                            {{ badge.name || badge.translated?.name || $t('swag-product-badge.detail.textPreview') }}
+                        </span>
+                    </div>
+                    {% endblock %}
+                </template>
+            </mt-card>
+            {% endblock %}
+        </sw-card-view>
+    </template>
+</sw-page>
+{% endblock %}

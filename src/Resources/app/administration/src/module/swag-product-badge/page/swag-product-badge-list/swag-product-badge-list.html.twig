@@ -1,0 +1,86 @@
+{% block swag_product_badge_list %}
+<sw-page class="swag-product-badge-list">
+    {% block swag_product_badge_list_search_bar %}
+    <template #search-bar>
+        <sw-search-bar
+            initial-search-type="swag_product_badge"
+            :initial-search="term"
+            @search="onSearch"
+        />
+    </template>
+    {% endblock %}
+
+    {% block swag_product_badge_list_smart_bar_header %}
+    <template #smart-bar-header>
+        <h2>
+            {{ $t('swag-product-badge.list.textOverview') }}
+            <span
+                v-if="!isLoading"
+                class="sw-page__smart-bar-amount"
+            >
+                ({{ total }})
+            </span>
+        </h2>
+    </template>
+    {% endblock %}
+
+    {% block swag_product_badge_list_smart_bar_actions %}
+    <template #smart-bar-actions>
+        <mt-button
+            variant="primary"
+            @click="$router.push({ name: 'swag.product.badge.create' })"
+        >
+            {{ $t('swag-product-badge.list.buttonAdd') }}
+        </mt-button>
+    </template>
+    {% endblock %}
+
+    {% block swag_product_badge_list_language_switch %}
+    <template #language-switch>
+        <sw-language-switch @on-change="onChangeLanguage" />
+    </template>
+    {% endblock %}
+
+    <template #content>
+        {% block swag_product_badge_list_content %}
+        <mt-empty-state
+            v-if="!isLoading && !total"
+            centered
+            icon="regular-products"
+            :headline="$t('swag-product-badge.list.messageEmpty')"
+            :description="$t('swag-product-badge.general.descriptionTextModule')"
+        />
+
+        <sw-entity-listing
+            v-else
+            class="swag-product-badge-list__grid"
+            detail-route="swag.product.badge.detail"
+            identifier="swag-product-badge-list"
+            :is-loading="isLoading"
+            :columns="columns"
+            :repository="badgeRepository"
+            :data-source="badges"
+            :criteria-limit="limit"
+            :sort-by="currentSortBy"
+            :sort-direction="sortDirection"
+            :disable-data-fetching="true"
+            @update-records="updateTotal"
+            @page-change="onPageChange"
+            @column-sort="onSortColumn"
+        >
+            {% block swag_product_badge_list_grid_column_color %}
+            <template #column-color="{ item }">
+                <span
+                    class="badge"
+                    :style="{ backgroundColor: item.color, color: '#fff', padding: '2px 8px', borderRadius: '4px' }"
+                >
+                    {{ item.translated.name || item.name }}
+                </span>
+                <code style="margin-left: 8px">{{ item.color }}</code>
+            </template>
+            {% endblock %}
+        </sw-entity-listing>
+        {% endblock %}
+    </template>
+</sw-page>
+{% endblock %}

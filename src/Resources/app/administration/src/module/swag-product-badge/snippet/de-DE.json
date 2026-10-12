@@ -1,0 +1,30 @@
+{
+    "swag-product-badge": {
+        "general": {
+            "mainMenuItemGeneral": "Produkt-Badges",
+            "descriptionTextModule": "Lege Badges wie Vegan oder Geschenkidee an und weise sie Produkten zu"
+        },
+        "list": {
+            "textOverview": "Produkt-Badges",
+            "buttonAdd": "Badge hinzufügen",
+            "messageEmpty": "Noch keine Badges",
+            "columnName": "Name",
+            "columnColor": "Farbe",
+            "columnPosition": "Position"
+        },
+        "detail": {
+            "textHeadline": "Neues Badge",
+            "cardTitle": "Badge",
+            "labelName": "Name",
+            "labelColor": "Farbe",
+            "labelPosition": "Position",
+            "textPreview": "Vorschau",
+            "messageSaveError": "Das Badge konnte nicht gespeichert werden."
+        },
+        "productForm": {
+            "labelBadges": "Badges",
+            "placeholderBadges": "Badges auswählen …",
+            "helpTextBadges": "Wird am Produkt im Storefront-Listing und auf der Detailseite angezeigt."
+        }
+    }
+}
